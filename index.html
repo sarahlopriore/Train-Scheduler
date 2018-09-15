@@ -3,14 +3,61 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Train SCheduler</title>
+    <title>Train Scheduler</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
 
 </head>
 <body>
-    
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4 text-center">Train Schedule</h1>
+        </div>
 
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Train Name</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Frequency (min)</th>
+                    <th scop="col">Next Arrival</th>
+                    <th scope="col">Minutes Away</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-warning">
+                    <td class="text-white text-center">abc</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+
+        <form>
+            <div class="form-group">
+                <label for="trainNameInput">Train Name</label>
+                <input type="text" class="form-control" id="trainNameInput">
+            </div>
+            <div class="form-group">
+                <label for="destinationInput">Destination</label>
+                <input type="text" class="form-control" id="destinationInput">
+            </div>
+            <div class="form-group">
+                <label for="trainTimeInput">First Train Time (HH:mm- military time)</label>
+                <input type="text" class="form-control" id="trainTimeInput">
+            </div>
+            <div class="form-group">
+                <label for="frequencyInput">Frequency (min)</label>
+                <input type="number" class="form-control" id="frequencyInput">
+            </div>
+            <button type="submit" id="submit" class="btn btn-outline-dark">Submit</button>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.29.0/date_fns.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
     <script src="assets/javascript/app.js"></script>
 </body>
 </html>
