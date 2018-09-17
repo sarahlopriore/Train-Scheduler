@@ -19,9 +19,6 @@ $(document).ready(function() {
         var firstTrain = $("#trainTimeInput").val();
         var frequency = $("#frequencyInput").val();
 
-        console.log(firstTrain);
-    
-
 
         database.ref("trains/").push({
             trainName: trainName,
@@ -29,14 +26,23 @@ $(document).ready(function() {
             firstTrain: firstTrain,
             frequency: frequency
         });
+    
 
     });
 
-
     var addRow = function(snap) {
-
-    
-
+        var firstTrain = snap.firstTrain;
+        var frequency = snap.frequency;
+        var format = dateFns.format;
+        var currentTime = new Date ();
+        var timeArray = firstTrain.split(":");
+        var hours = timeArray[0];
+        var minutes = timeArray[1];
+        var time1 = dateFns.setHours(dateFns.setMinutes(new Date (), minutes), hours)
+        var difference = dateFns.differenceInMinutes(currentTime, dateFns.subYears(time1, 1));
+        var getRemainder = difference % frequency;
+        var minutesAway = frequency - getRemainder;   
+        var nextArrival = dateFns.addMinutes(new Date(), minutesAway);
 
         var tr = $("<tr>");
         var td1 = $("<td>");
@@ -47,8 +53,14 @@ $(document).ready(function() {
         tr.append(td1.text(snap.trainName));
         tr.append(td2.text(snap.destination));
         tr.append(td3.text(snap.frequency));
-        tr.append(td4.text(""))
-        tr.append(td5.text(""));
+        tr.append(td4.text(format(nextArrival, "HH:mm")));
+        tr.append(td5.text(minutesAway));
+        tr.addClass("bg-info");
+        td1.addClass("text-white");
+        td2.addClass("text-white");
+        td3.addClass("text-white");
+        td4.addClass("text-white");
+        td5.addClass("text-white");
         $("tbody").append(tr);
     }
 
